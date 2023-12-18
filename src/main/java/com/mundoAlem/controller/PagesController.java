@@ -32,10 +32,10 @@ public class PagesController {
 		return "pages/destino";
 	}
 	
-	@GetMapping("/contato")
+	/*@GetMapping("/contato")
 	public String contato() {
 		return "pages/contato";
-	}
+	}*/
 	
 	@GetMapping("/opcoes")
 	public String opcoes() {
@@ -55,5 +55,10 @@ public class PagesController {
 			model.addAttribute("error", "Credenciais inválidas. Tente novamente.");
             return "redirect:/login";
 		}
+	}
+	
+	@GetMapping("/nao-disponivel")
+	public String manutencao() {
+		return "pages/manutencao";
 	}
 }
