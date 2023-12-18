@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Editar - MundoAlém</title>
+    <title>Nossos Usuários</title>
     <link rel="stylesheet" type="text/css" href="../css/estilo.css">
     <link rel="stylesheet" type="text/css" href="../css/formStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -39,47 +39,43 @@
       </nav>
       <!--Conteúdo-->
       <div class="text-nav titulo">
-        <h2>Edite seus dados!</h2>
+        <h2>Nossos Destinos</h2>
       </div>
       <div class="row p-3">
-        <div class="form-container">
-          <form method="post" th:object="${usuario}" enctype="multipart/form-data">
-			  <input type="hidden" th:field="*{idUsuario}">
-            <div class="form-group">
-              <label for="nomeUsuario">Nome:</label>
-              <input type="text" id="nomeUsuario" name="nomeUsuario" placeholder="seu nome" th:field="*{nome}">
-            </div>
-            <div class="form-group">
-              <label for="cpfUsuario">CPF:</label>
-              <input type="text" id="cpfUsuario" name="cpfUsuario" placeholder="seu cpf" th:field="*{cpf}">
-            </div>
-            <div class="form-group">
-              <label for="dNasc">Data de Nascimento:</label>
-              <input type="date" id="dNasc" name="dNasc" th:field="*{dataNasc}">
-            </div>
-            <div class="form-group">
-              <label for="endUsuario">Endereço:</label>
-              <input type="text" id="endUsuario" name="endUsuario" placeholder="seu endereço completo" th:field="*{endereco}">
-            </div>
-            <div class="form-group">
-              <label for="ufUsuario">UF:</label>
-	             <select id="ufUsuario" name="ufUsuario" th:field="${usuario.uf}">
-					 <option th:each="uf:${uf}" th:text="${uf.getSigla()}" th:value="${uf}"></option>
-				 </select>
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="email" id="emailUsuario" name="emailUsuario" placeholder="xxx@xxx.com" th:field="*{email}">
-            </div>
-            <div class="form-group">
-              <label for="senha">Senha:</label>
-              <input type="password" id="senhaUsuario" name="senhaUsuario" placeholder="***" th:field="*{senha}">
-            </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
-            <a href="/usuario/listar-usuario" class="btn btn-danger float-end border">Cancelar</a>
-          </form>
-          <br>
-        </div>
+		  <div class=""col-sm-12"">
+			  <table class="table table-responsive table-striped table-bordered">
+				  <thead>
+					  <tr>
+						  <th>Código</th>
+						  <th>Tipo</th>
+						  <th>Destino</th>
+						  <th>Descrição</th>
+						  <th>Valor</th>
+						  <th>Opções</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr th:each="destino : ${destino}">
+						  <td th:text="${destino.idDestino}"></td>
+						  <td th:text="${destino.titulo}"></td>
+						  <td th:text="${destino.nomeDestino}"></td>
+						  <td th:text="${destino.descricao}"></td>
+						  <td th:text="${destino.valor}"></td>
+						  <td>
+							  <a th:href="@{/destino/destino/{id} (id=${destino.idDestino})}" class="btn btn-info">Detalhar</a>
+							  <a th:href="@{/destino/{id}/editar-destino (id=${destino.idDestino})}"
+							  		class="btn btn-warning">Editar</a>
+							  <a th:href="@{/destino/{id}/excluir-destino(id=${destino.idDestino})}" 
+							   class="btn btn-danger"
+									onclick="return confirm('Tem certeza que deseja excluir o Destino?');">Excluir</a>
+						  </td>
+					  </tr>
+				  </tbody>
+			  </table>
+			  <a href="/destino/cadastrar-destino" class="btn btn-secondary">Cadastre novo Destino</a>
+			  <a href="/opcoes" class="btn btn-primary">Volte às opções</a>
+		  </div>
+		
       </div>
       <!--Rodapé-->
       <div class="estilo-rodape text-nav">

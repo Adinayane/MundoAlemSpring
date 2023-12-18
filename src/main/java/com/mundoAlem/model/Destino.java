@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+import com.mundoAlem.enums.tipoDestino;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +22,13 @@ public class Destino {
 	private int idDestino;
 	
 	@Column(nullable = false)
+	private tipoDestino titulo;
+	
+	@Column(nullable = false)
 	private String nomeDestino;
+	
+	@Column(nullable = false)
+	private String descricao;
 	
 	@Column(nullable = false)
 	@NumberFormat(style = Style.CURRENCY, pattern="#,##0.00")
@@ -30,10 +38,12 @@ public class Destino {
 		
 	}
 	
-	public Destino(int idDestino, String nomeDestino, BigDecimal valor) {
+	public Destino(int idDestino, tipoDestino titulo, String nomeDestino, String descricao, BigDecimal valor) {
 		super();
 		this.idDestino = idDestino;
+		this.titulo = titulo;
 		this.nomeDestino = nomeDestino;
+		this.descricao = descricao;
 		this.valor = valor;
 	}
 
@@ -59,6 +69,22 @@ public class Destino {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public tipoDestino getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(tipoDestino titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

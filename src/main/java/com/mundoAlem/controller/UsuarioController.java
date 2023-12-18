@@ -41,7 +41,7 @@ public class UsuarioController {
 	
 	@PostMapping("/cadastro-usuario")
 	public ModelAndView salvar(Usuario usuario) {
-		ModelAndView modelandview = new ModelAndView("redirect:/listar-usuario");
+		ModelAndView modelandview = new ModelAndView("redirect:/usuario/listar-usuario");
 		userRepo.save(usuario);
 		return modelandview;
 	}
@@ -65,7 +65,7 @@ public class UsuarioController {
 	
 	@GetMapping("/{id}/excluir-usuario")
 	public ModelAndView excluirUsuario(@PathVariable Long id) {
-		ModelAndView modelandview = new ModelAndView("redirect:/listar-usuario");
+		ModelAndView modelandview = new ModelAndView("redirect:/usuario/listar-usuario");
 		userRepo.deleteById(id);
 		return modelandview;
 	}

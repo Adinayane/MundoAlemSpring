@@ -37,6 +37,11 @@ public class PagesController {
 		return "pages/contato";
 	}
 	
+	@GetMapping("/opcoes")
+	public String opcoes() {
+		return "pages/selecao";
+	}
+	
 	@GetMapping("/login")
 	public String login() {
 		return "pages/login";
@@ -45,7 +50,7 @@ public class PagesController {
 	@PostMapping("/login")
 	public String login(@RequestParam String email, @RequestParam String password, Model model) {
 		if(verificalogin.autentica(email, password)) {
-			return "redirect:/usuario/listar-usuario";
+			return "redirect:/opcoes";
 		}else {
 			model.addAttribute("error", "Credenciais inválidas. Tente novamente.");
             return "redirect:/login";
